@@ -45,6 +45,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Objector.1.0.0.79\lib\net35\Objector.dll</HintPath>
     </Reference>
+    <Reference Include="Renci.SshNet, Version=2014.4.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\sshNet-2014.4.6-beta1\Renci.SshNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -85,6 +89,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remotes\IRemote.cs" />
     <Compile Include="Remotes\S3Remote.cs" />
+    <Compile Include="Remotes\SSHRemote.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
