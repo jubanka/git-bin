@@ -12,14 +12,14 @@ namespace GitBin.Commands
 
         public PushCommand(
             ICacheManager cacheManager,
-            IRemote remote,
+            IRemotesFactory remotesFactory,
             string[] args)
         {
             if (args.Length > 0)
                 throw new ArgumentException();
 
             _cacheManager = cacheManager;
-            _remote = remote;
+            _remote = remotesFactory.GetRemote();
         }
 
         public void Execute()

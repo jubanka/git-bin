@@ -16,7 +16,7 @@ namespace GitBin.Commands
 
         public StatusCommand(
             ICacheManager cacheManager,
-            IRemote remote,
+            IRemotesFactory remotesFactory,
             string[] args)
         {
             if (args.Length > 1)
@@ -35,7 +35,7 @@ namespace GitBin.Commands
             }
 
             _cacheManager = cacheManager;
-            _remote = remote;
+            _remote = remotesFactory.GetRemote();
 
             _filesInLocalCache = _cacheManager.ListFiles();
         }

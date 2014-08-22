@@ -78,6 +78,7 @@
     <Compile Include="CacheManager.cs" />
     <Compile Include="GitBinDocument.cs" />
     <Compile Include="CommandFactory.cs" />
+    <Compile Include="RemotesFactory.cs" />
     <Compile Include="Commands\CleanCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ShowUsageCommand.cs" />

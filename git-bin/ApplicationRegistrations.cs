@@ -16,6 +16,10 @@ namespace GitBin
                 .InNamespaceOf<IRemote>()
                 .AsImplementedInterfaces();
 
+            builder.RegisterAssembly(typeof (IRemotesFactory).Assembly)
+                .InNamespaceOf<IRemote>()
+                .AsImplementedInterfaces();
+
             builder.RegisterAssembly(typeof (CleanCommand).Assembly)
                 .InNamespaceOf<CleanCommand>()
                 .AsSelf();
