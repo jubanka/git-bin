@@ -1,6 +1,6 @@
 # git-bin
 
-Dealing with large binary files in git can be difficult. git-bin's goal is to allow files to be managed with git, but to store the file contents in Amazon S3. git-bin follows the principle of least surprise, and functions just like built-in git commands.
+Dealing with large binary files in git can be difficult. git-bin's goal is to allow files to be managed with git, but to store the file contents in remote storage. Currently, Amazon S3 buckets and generic ssh-accessible storage are supported targets for remote storage. git-bin follows the principle of least surprise, and functions just like built-in git commands.
 
 To make better use of time, bandwidth, and storage space, git-bin divides large files into smaller chunks (default size 1M). If there is a 1 byte change in the middle of a 100MB file, only one chunk will have to be uploaded and stored instead of the entire file.
 
@@ -19,13 +19,27 @@ $ git config --global filter.bin.clean "git bin clean %f"
 $ git config --global filter.bin.smudge "git bin smudge"
 ```
 
-Step 2: Supply your Amazon S3 information
+Step 2: Configure the remote type
+
+Step 2.1: (S3 storage) Supply your Amazon S3 information
 
 ```bash
 $ git config --global git-bin.s3bucket "your bucket name"
 $ git config --global git-bin.s3key "your key"
 $ git config --global git-bin.s3secretKey "your secret key"
 ```
+
+Step 2.2: (SSH storage) Supply your SSH information
+
+```bash
+$ git config --global git-bin.sshhost "your hostname or IP"
+$ git config --global git-bin.sshport "your SSH port (normally 22)"
+$ git config --global git-bin.sshusername "your SSH username"
+$ git config --global git-bin.sshkeyfile "your private RSA key file (normally ~/.ssh.id_rsa)"
+$ git config --global git-bin.sshhostpath "the directory path where the repo will reside at the remote host"
+```
+
+Note: You can configure secret key SSH authentication by generating a secret key with ```ssh-keygen``` and then using ```ssh-copy-id```.
 
 Step 3: Set up .gitattributes
 
@@ -53,8 +67,8 @@ $ ls -lh brooklyn_bridge.jpg
 $ git add brooklyn_bridge.jpg
 [git-bin] Cleaning brooklyn_bridge.jpg
 
-$ git commit -m "Added JPG that's manage by git-bin"
-[dev 6adb9c6] Added JPG that's manage by git-bin
+$ git commit -m "Added JPG that's managed by git-bin"
+[dev 6adb9c6] Added JPG that's managed by git-bin
 <snip>
  
 $ git bin push
